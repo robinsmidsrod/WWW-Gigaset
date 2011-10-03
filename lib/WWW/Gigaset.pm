@@ -160,7 +160,7 @@ sub transfer_vcards {
         sleep(1);
         $mech->get( $self->url . '/status.html' );
         $counter++;
-        last if $counter >= 5;
+        last if $counter >= 500; # Supports up to 1000 entries, phone handles about 2 entries per second
     }
     confess("Transfer vCards failed: vCard file is corrupt")   if $status == 19;
     confess("Transfer vCards failed: vCard file is empty")     if $status == 21;
