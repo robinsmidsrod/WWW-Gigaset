@@ -4,6 +4,9 @@ use strict;
 use warnings;
 use feature qw(say);
 
+# PODNAME: fetch_google_vcards
+# ABSTRACT: Output vCard 2.1 name and phone numbers for all Google Contacts
+
 STDOUT->binmode(":crlf"); # The Siemens Gigaset DX800a requires UTF8 with CRLF files
 
 my @contacts;
@@ -49,7 +52,7 @@ BEGIN {
     use Moose;
     use namespace::autoclean;
     use WWW::Google::Contacts;
-    sub config_filename { '.google.ini' }
+    sub config_filename { return '.google.ini' }
     with 'Config::Role';
     has email    => ( is => 'ro', isa => 'Str', lazy => 1, default => sub { (shift)->config->{'email'}    } );
     has password => ( is => 'ro', isa => 'Str', lazy => 1, default => sub { (shift)->config->{'password'} } );
