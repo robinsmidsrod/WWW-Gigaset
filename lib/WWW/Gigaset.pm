@@ -64,6 +64,16 @@ sub login {
     return $mech->content();
 }
 
+# Generic logout handler
+# NB: Always run this, or other users will be blocked until session timeout (usually 5min)
+sub logout {
+    my ($self) = @_;
+    my $mech = $self->browser;
+    $mech->get( $self->url . '/logout.html' );
+    return 1 if $mech->content() =~ /You have been successfully logged off./;
+    return $mech->content();
+}
+
 # Fetch names of valid handsets
 sub get_handsets {
     my ($self) = @_;
@@ -71,19 +81,20 @@ sub get_handsets {
     my $mech = $self->browser;
     $mech->get( $self->url . '/settings_telephony_tdt.html' );
     my $handset_map = _parse_handset_html( $mech->content() );
+    $self->logout();
     return wantarray ? keys %$handset_map : join(", ", keys %$handset_map);
 }
 
 # Fetch vCards for the given handset
 sub get_vcards {
     my ($self, $handset) = @_;
-    confess("Please specify a handset") unless $handset;
+    $self->throw_error("Please specify a handset") unless $handset;
     $self->login();
     my $mech = $self->browser;
     $mech->get( $self->url . '/settings_telephony_tdt.html' );
     my $handset_map = _parse_handset_html( $mech->content() );
     my $handset_port = $handset_map->{ lc $handset };
-    confess("Invalid handset '$handset' specified\n") unless $handset_port;
+    $self->throw_error("Invalid handset '$handset' specified\n") unless $handset_port;
     $mech->submit_form(
         form_name => 'gigaset',
         fields    => {
@@ -92,19 +103,21 @@ sub get_vcards {
             tdt_function     => '1', # Save
         }
     );
-    return $mech->content();
+    my $content = $mech->content();
+    $self->logout();
+    return $content;
 }
 
 # Delete all vCards for the given handset
 sub delete_vcards {
     my ($self, $handset) = @_;
-    confess("Please specify a handset") unless $handset;
+    $self->throw_error("Please specify a handset") unless $handset;
     $self->login();
     my $mech = $self->browser;
     $mech->get( $self->url . '/settings_telephony_tdt.html' );
     my $handset_map = _parse_handset_html( $mech->content() );
     my $handset_port = $handset_map->{ lc $handset };
-    confess("Invalid handset '$handset' specified\n") unless $handset_port;
+    $self->throw_error("Invalid handset '$handset' specified\n") unless $handset_port;
     $mech->submit_form(
         form_name => 'gigaset',
         fields    => {
@@ -125,23 +138,28 @@ sub delete_vcards {
         $counter++;
         last if $counter >= 5;
     }
-    confess("Delete vCards failed: Handset connection not available") if $status == 23;
-    confess("Delete vCards failed: Unknown error") if $status > 16 and $status <= 31;
-    return "Telephone directory has been deleted" if $status == 16;
-    return $mech->content();
+    $self->throw_error("Delete vCards failed: Handset connection not available") if $status == 23;
+    $self->throw_error("Delete vCards failed: Unknown error") if $status > 16 and $status <= 31;
+    if ( $status == 16 ) {
+        $self->logout();
+        return "Telephone directory has been deleted";
+    }
+    my $content = $mech->content();
+    $self->logout();
+    return $content;
 }
 
 # Transfer vCard file for the given handset
 sub transfer_vcards {
     my ($self, $handset, $vcard_file) = @_;
-    confess("Please specify a handset") unless $handset;
-    confess("Please specify vCard file to upload") unless $vcard_file and -r $vcard_file;
+    $self->throw_error("Please specify a handset") unless $handset;
+    $self->throw_error("Please specify vCard file to upload") unless $vcard_file and -r $vcard_file;
     $self->login();
     my $mech = $self->browser;
     $mech->get( $self->url . '/settings_telephony_tdt.html' );
     my $handset_map = _parse_handset_html( $mech->content() );
     my $handset_port = $handset_map->{ lc $handset };
-    confess("Invalid handset '$handset' specified\n") unless $handset_port;
+    $self->throw_error("Invalid handset '$handset' specified\n") unless $handset_port;
     $mech->submit_form(
         form_name => 'gigaset',
         fields    => {
@@ -162,13 +180,25 @@ sub transfer_vcards {
         $counter++;
         last if $counter >= 500; # Supports up to 1000 entries, phone handles about 2 entries per second
     }
-    confess("Transfer vCards failed: vCard file is corrupt")   if $status == 19;
-    confess("Transfer vCards failed: vCard file is empty")     if $status == 21;
-    confess("Transfer vCards failed: vCard file is too large") if $status == 22;
-    confess("Transfer vCards failed: Handset unavailable")     if $status == 23;
-    confess("Transfer vCards failed: Unknown error") if $status > 18 and $status <= 31;
-    return "All vCards have been transferred" if $status == 18;
-    return $mech->content();
+    $self->throw_error("Transfer vCards failed: vCard file is corrupt")   if $status == 19;
+    $self->throw_error("Transfer vCards failed: vCard file is empty")     if $status == 21;
+    $self->throw_error("Transfer vCards failed: vCard file is too large") if $status == 22;
+    $self->throw_error("Transfer vCards failed: Handset unavailable")     if $status == 23;
+    $self->throw_error("Transfer vCards failed: Unknown error") if $status > 18 and $status <= 31;
+    if ( $status == 18 ) {
+        $self->logout();
+        return "All vCards have been transferred";
+    }
+    my $content = $mech->content();
+    $self->logout();
+    return $content;
+}
+
+# Logout and throw exception
+sub throw_error {
+    my ($self, $msg) = @_;
+    $self->logout();
+    confess($msg);
 }
 
 # Parse lines like this:
