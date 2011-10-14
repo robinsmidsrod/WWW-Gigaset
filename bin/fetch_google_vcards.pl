@@ -32,6 +32,7 @@ foreach my $entry ( sort { $a->{'name'} cmp $b->{'name'} } @contacts ) {
         (my $value = $number->value) =~ s/\s//g; # Strip whitespace
         $value =~ s/\+/00/; # Convert + to 00
         if ( $number->type->name =~ /_fax/ ) {
+            next; # Gigaset DX800A doesn't support fax numbers in this format
             my $type = $number->type->name;
             $type =~ s/_fax//;
             say "TEL;" . uc($type) . ";FAX:" . $value;
