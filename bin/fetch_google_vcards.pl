@@ -33,9 +33,9 @@ foreach my $entry ( sort { $a->{'name'} cmp $b->{'name'} } @contacts ) {
         $value =~ s/\+/00/; # Convert + to 00
         if ( $number->type->name =~ /_fax/ ) {
             next; # Gigaset DX800A doesn't support fax numbers in this format
-            my $type = $number->type->name;
-            $type =~ s/_fax//;
-            say "TEL;" . uc($type) . ";FAX:" . $value;
+            #my $type = $number->type->name;
+            #$type =~ s/_fax//;
+            #say "TEL;" . uc($type) . ";FAX:" . $value;
         }
         else {
             my $type = $number->type->name eq 'mobile' ? 'CELL' : uc($number->type->name);
@@ -50,6 +50,7 @@ exit;
 
 BEGIN {
     package Google;
+
     use Moose;
     use namespace::autoclean;
     use WWW::Google::Contacts;

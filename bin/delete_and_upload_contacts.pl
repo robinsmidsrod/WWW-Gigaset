@@ -6,6 +6,9 @@ use rlib;
 use WWW::Gigaset;
 use feature qw(say);
 
+# PODNAME: delete_and_upload_contacts
+# ABSTRACT: Delete contacts from phone and upload contacts from VCF to phone
+
 die("Please specify vCard file\n") unless @ARGV;
 
 my $gigaset = WWW::Gigaset->new();

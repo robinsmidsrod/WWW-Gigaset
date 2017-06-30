@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package WWW::Gigaset;
+
 use Moose;
 use namespace::autoclean;
 

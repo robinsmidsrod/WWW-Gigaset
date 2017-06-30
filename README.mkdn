@@ -16,9 +16,9 @@ This module uses semantic versioning concepts from [http://semver.org/](http://s
 
 # SEE ALSO
 
-- [Moose](http://search.cpan.org/perldoc?Moose)
-- [WWW::Mechanize](http://search.cpan.org/perldoc?WWW::Mechanize)
-- [Config::Role](http://search.cpan.org/perldoc?Config::Role)
+- [Moose](https://metacpan.org/pod/Moose)
+- [WWW::Mechanize](https://metacpan.org/pod/WWW::Mechanize)
+- [Config::Role](https://metacpan.org/pod/Config::Role)
 
 # SUPPORT
 
@@ -26,71 +26,77 @@ This module uses semantic versioning concepts from [http://semver.org/](http://s
 
 You can find documentation for this module with the perldoc command.
 
-  perldoc WWW::Gigaset
+    perldoc WWW::Gigaset
 
 ## Websites
 
 The following websites have more information about this module, and may be of help to you. As always,
 in addition to those websites please use your favorite search engine to discover more resources.
 
+- MetaCPAN
+
+    A modern, open-source CPAN search engine, useful to view POD in HTML format.
+
+    [http://metacpan.org/release/WWW-Gigaset](http://metacpan.org/release/WWW-Gigaset)
+
 - Search CPAN
 
-The default CPAN search engine, useful to view POD in HTML format.
+    The default CPAN search engine, useful to view POD in HTML format.
 
-[http://search.cpan.org/dist/WWW-Gigaset](http://search.cpan.org/dist/WWW-Gigaset)
+    [http://search.cpan.org/dist/WWW-Gigaset](http://search.cpan.org/dist/WWW-Gigaset)
 
 - RT: CPAN's Bug Tracker
 
-The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+    The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
 
-[http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-Gigaset](http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-Gigaset)
+    [https://rt.cpan.org/Public/Dist/Display.html?Name=WWW-Gigaset](https://rt.cpan.org/Public/Dist/Display.html?Name=WWW-Gigaset)
 
 - AnnoCPAN
 
-The AnnoCPAN is a website that allows community annonations of Perl module documentation.
+    The AnnoCPAN is a website that allows community annotations of Perl module documentation.
 
-[http://annocpan.org/dist/WWW-Gigaset](http://annocpan.org/dist/WWW-Gigaset)
+    [http://annocpan.org/dist/WWW-Gigaset](http://annocpan.org/dist/WWW-Gigaset)
 
 - CPAN Ratings
 
-The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
+    The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
 
-[http://cpanratings.perl.org/d/WWW-Gigaset](http://cpanratings.perl.org/d/WWW-Gigaset)
+    [http://cpanratings.perl.org/d/WWW-Gigaset](http://cpanratings.perl.org/d/WWW-Gigaset)
 
 - CPAN Forum
 
-The CPAN Forum is a web forum for discussing Perl modules.
+    The CPAN Forum is a web forum for discussing Perl modules.
 
-[http://cpanforum.com/dist/WWW-Gigaset](http://cpanforum.com/dist/WWW-Gigaset)
+    [http://cpanforum.com/dist/WWW-Gigaset](http://cpanforum.com/dist/WWW-Gigaset)
 
 - CPANTS
 
-The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
+    The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
 
-[http://cpants.perl.org/dist/overview/WWW-Gigaset](http://cpants.perl.org/dist/overview/WWW-Gigaset)
+    [http://cpants.cpanauthors.org/dist/WWW-Gigaset](http://cpants.cpanauthors.org/dist/WWW-Gigaset)
 
 - CPAN Testers
 
-The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
+    The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
 
-[http://www.cpantesters.org/distro/W/WWW-Gigaset](http://www.cpantesters.org/distro/W/WWW-Gigaset)
+    [http://www.cpantesters.org/distro/W/WWW-Gigaset](http://www.cpantesters.org/distro/W/WWW-Gigaset)
 
 - CPAN Testers Matrix
 
-The CPAN Testers Matrix is a website that provides a visual way to determine what Perls/platforms PASSed for a distribution.
+    The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
 
-[http://matrix.cpantesters.org/?dist=WWW-Gigaset](http://matrix.cpantesters.org/?dist=WWW-Gigaset)
+    [http://matrix.cpantesters.org/?dist=WWW-Gigaset](http://matrix.cpantesters.org/?dist=WWW-Gigaset)
 
 - CPAN Testers Dependencies
 
-The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+    The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
 
-[http://deps.cpantesters.org/?module=WWW::Gigaset](http://deps.cpantesters.org/?module=WWW::Gigaset)
+    [http://deps.cpantesters.org/?module=WWW::Gigaset](http://deps.cpantesters.org/?module=WWW::Gigaset)
 
 ## Bugs / Feature Requests
 
 Please report any bugs or feature requests by email to `bug-www-gigaset at rt.cpan.org`, or through
-the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Gigaset](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Gigaset). You will be automatically notified of any
+the web interface at [https://rt.cpan.org/Public/Bug/Report.html?Queue=WWW-Gigaset](https://rt.cpan.org/Public/Bug/Report.html?Queue=WWW-Gigaset). You will be automatically notified of any
 progress on the request by the system.
 
 ## Source Code
@@ -101,7 +107,7 @@ from your repository :)
 
 [http://github.com/robinsmidsrod/WWW-Gigaset](http://github.com/robinsmidsrod/WWW-Gigaset)
 
-  git clone git://github.com/robinsmidsrod/WWW-Gigaset.git
+    git clone git://github.com/robinsmidsrod/WWW-Gigaset.git
 
 # AUTHOR
 
@@ -109,7 +115,7 @@ Robin Smidsrød <robin@smidsrod.no>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Robin Smidsrød.
+This software is copyright (c) 2017 by Robin Smidsrød.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
